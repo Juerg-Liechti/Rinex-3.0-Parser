@@ -216,7 +216,8 @@ namespace Rinex3Parser.Obs
                         if (!String.IsNullOrEmpty(line))
                         {
                             Debug.Assert(observationRecord != null, "observationRecord != null");
-                            observationRecord.Parse(line);
+                            // Because of performance problems commented
+                            //observationRecord.Parse(line);
                         }
                         counter--;
                     }

@@ -150,6 +150,12 @@ namespace Rinex3Parser.Obs
         internal bool ParseHeaderLine(string headerLine)
         {
             var header = headerLine.Substring(60).TrimEnd();
+            // Bugfix for Trimble Firmware 5.48
+            if (header.Equals("BY / DATE"))
+            {
+                headerLine = headerLine.Insert(10, "          ");
+                header = "PGM / RUN BY / DATE";
+            }
             var data = headerLine.Substring(0, 60);
             var matchResult = Match.Empty;
 
